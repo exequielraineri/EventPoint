@@ -2,6 +2,9 @@
 
 _Aplicación Android - Final Laboratorio VI - Exequiel Raineri_
 
+[Diseño Figma](https://www.figma.com/design/fDKiU0nGbbIezb89pT04ii/EventPoint?node-id=0-1&t=X8PrBNWhehJmYGIK-1)
+
+
 ### Descripción
 
 **EventPoint** es una aplicación móvil diseñada para facilitar la búsqueda de eventos cercanos al usuario.
