@@ -45,6 +45,7 @@ La aplicación muestra eventos locales, permitiendo a los usuarios:
   - El sistema debe permitir a los usuarios obtener una entrada y realizar pagos mediante pasarela de pago(Mercado Pago).
   - El sistema debe permitir al usuario ver las entradas que compró.
   - El sistema debe poder generar un código QR para cada entrada.
+  - El sistema debe enviar via Email la entrada adquirida por el usuario.
 - **Notificaciones**
   - El sistema debe poder enviar notificaciones push sobre eventos cercanos del interés del usuario (ej., conciertos, eventos deportivos).
   - El sistema debe poder enviar notificaciones al usuario sobre nuevos eventos del interés del usuario.
@@ -59,6 +60,8 @@ La aplicación muestra eventos locales, permitiendo a los usuarios:
 - **Seguridad**
   - Las contraseñas deben ser encriptadas.
   - Se debe validar token de acceso.
+- **Geolocalización**
+  - La aplicación debe acceder a la ubicación del dispositivo.
 
 # Modelado de datos
 
