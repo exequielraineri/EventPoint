@@ -4,8 +4,9 @@
  */
 package com.exeraineri.eventpoint.backend.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,20 +16,19 @@ import lombok.NoArgsConstructor;
  *
  * @author Exequiel
  */
-@Builder
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class LocationDto {
+public class TicketTypeDto {
 
     private Long id;
-    @NotNull(message = "Latitud es requerido")
-    private Float latitude;
-    @NotNull(message = "Longitud es requerido")
-    private Float longitude;
-    private String address;
-    private String city;
-    private String postalCode;
-
+    @NotNull(message = "Evento es requerido")
+    private EventDto event;
+    @NotNull(message = "Nombre es requerido")
+    private String name;
+    @NotNull(message = "Stock es requerido")
+    private int stock;
+    @NotNull(message = "Precio es requerido")
+    private BigDecimal price;
 }

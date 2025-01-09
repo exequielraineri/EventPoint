@@ -8,26 +8,27 @@ import com.exeraineri.eventpoint.backend.enumeration.EnumRole;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import jakarta.validation.constraints.Email;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  *
  * @author Exequiel
  */
+@EntityListeners(AuditingEntityListener.class)
 @Entity(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -46,15 +47,15 @@ public class UserEntity {
     private String email;
     @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private EnumRole role;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Location location;
-    private Boolean isActive;
-    @Temporal(TemporalType.TIMESTAMP)
+    private Boolean isActive = Boolean.TRUE;
+    @CreatedDate
     private LocalDateTime createdAt;
-    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
     private LocalDateTime updatedAt;
     private String resetPasswordToken;
-
 }

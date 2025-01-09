@@ -31,8 +31,8 @@ public class UserDto {
     private String firstName;
     @NotNull(message = "Apellido es requerido")
     private String lastName;
-    @NotNull(message = "Email es requerido")
     @Email
+    @NotNull(message = "Email es requerido")
     private String email;
     private String password;
     private EnumRole role;

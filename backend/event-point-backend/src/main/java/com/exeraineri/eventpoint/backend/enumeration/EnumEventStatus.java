@@ -5,7 +5,9 @@
 package com.exeraineri.eventpoint.backend.enumeration;
 
 /**
- *
+* ACTIVO,
+    CANCELADO,
+    FINALIZADO
  * @author Exequiel
  */
 public enum EnumEventStatus {

@@ -4,42 +4,42 @@
  */
 package com.exeraineri.eventpoint.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import java.time.LocalDateTime;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  *
  * @author Exequiel
  */
-@Entity(name = "locations")
+@Entity(name = "ticket_types")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-@EntityListeners(AuditingEntityListener.class)
-public class Location {
+public class TicketType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    private Event event;
     @Column(nullable = false)
-    private Float latitude;
+    private String name;
     @Column(nullable = false)
-    private Float longitude;
-    private String address;
-    private String postalCode;
-    private String city;
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
+    private int stock;
+    @Column(nullable = false)
+    private BigDecimal price;
+
 }

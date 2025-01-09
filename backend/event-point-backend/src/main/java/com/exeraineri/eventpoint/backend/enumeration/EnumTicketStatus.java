@@ -5,7 +5,7 @@
 package com.exeraineri.eventpoint.backend.enumeration;
 
 /**
- *
+ * RESERVADA, COMPRADA, CANCELADA
  * @author Exequiel
  */
 public enum EnumTicketStatus {

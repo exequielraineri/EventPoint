@@ -5,16 +5,13 @@
 package com.exeraineri.eventpoint.backend.service.implementation;
 
 import com.exeraineri.eventpoint.backend.entity.UserEntity;
-import com.exeraineri.eventpoint.backend.exception.CustomException;
 import com.exeraineri.eventpoint.backend.exception.CustomException.EmailAlreadyExistsException;
 import com.exeraineri.eventpoint.backend.exception.CustomException.ResourceNotFoundException;
 import com.exeraineri.eventpoint.backend.repository.IUserRepository;
 import com.exeraineri.eventpoint.backend.service.interfaces.IUserService;
-import jakarta.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service

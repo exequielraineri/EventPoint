@@ -10,7 +10,6 @@ import com.exeraineri.eventpoint.backend.exception.CustomException.ResourceNotFo
 import com.exeraineri.eventpoint.backend.repository.ILocationRepository;
 import com.exeraineri.eventpoint.backend.service.interfaces.ILocationService;
 import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

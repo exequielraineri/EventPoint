@@ -15,20 +15,16 @@ import lombok.NoArgsConstructor;
  *
  * @author Exequiel
  */
-@Builder
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class LocationDto {
+public class CategoryDto {
 
     private Long id;
-    @NotNull(message = "Latitud es requerido")
-    private Float latitude;
-    @NotNull(message = "Longitud es requerido")
-    private Float longitude;
-    private String address;
-    private String city;
-    private String postalCode;
-
+    @NotNull(message = "Nombre es requerido")
+    private String name;
+    private String description;
+    private Boolean isActive;
 }

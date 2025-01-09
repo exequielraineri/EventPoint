@@ -17,6 +17,15 @@ public class ModelMapperConfig {
 
     @Bean
     public ModelMapper modelMapper() {
-        return new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
+
+        // Configuración para evitar errores por propiedades ausentes o ambiguas
+        modelMapper.getConfiguration()
+                .setFieldMatchingEnabled(true) // Habilita la coincidencia de campos
+                .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE) // Incluye campos privados
+                .setSkipNullEnabled(true); // Omite valores nulos durante el mapeo
+
+        return modelMapper;
     }
+
 }

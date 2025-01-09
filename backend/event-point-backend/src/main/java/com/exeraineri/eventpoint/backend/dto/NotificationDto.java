@@ -5,7 +5,7 @@
 package com.exeraineri.eventpoint.backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,20 +15,16 @@ import lombok.NoArgsConstructor;
  *
  * @author Exequiel
  */
-@Builder
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class LocationDto {
+public class NotificationDto {
 
     private Long id;
-    @NotNull(message = "Latitud es requerido")
-    private Float latitude;
-    @NotNull(message = "Longitud es requerido")
-    private Float longitude;
-    private String address;
-    private String city;
-    private String postalCode;
-
+    private String message;
+    private UserDto user;
+    private EventDto event;
+    private LocalDateTime createdAt;
 }

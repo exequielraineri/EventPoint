@@ -1,15 +1,16 @@
 # EventPoint
 
 **Aplicación Android - Final Laboratorio VI - Exequiel Raineri**
+
 - [Diseño Figma](https://www.figma.com/design/fDKiU0nGbbIezb89pT04ii/EventPoint?node-id=0-1&t=X8PrBNWhehJmYGIK-1)
 
 ## Índice
+
 1.  [Descripción del proyecto](#descripción)
 2.  [Tecnologías a usar](#tecnologías-a-usar)
 3.  [Roles](#roles)
 4.  [Definición de requerimientos](#definición-de-requerimientos)
 5.  [Modelado de Datos](#modelado-de-datos)
-
 
 ## Descripción
 
@@ -96,7 +97,6 @@ La aplicación muestra eventos locales, permitiendo a los usuarios:
   - **status**: Estado del evento(ACTIVO, CANCELADO, FINALIZADO).
   - **start_date**: Fecha y hora de inicio del evento.
   - **end_date**: Fecha y hora de fin del evento.
-  - **max_tickets**: Cantidad maxima de entradas disponibles.
   - **image_url**: Url para la imagen del evento.
   - **base_price**: Precio base del evento.
   - **category_id**: Identificador de la categoria del evento.
@@ -105,6 +105,7 @@ La aplicación muestra eventos locales, permitiendo a los usuarios:
   - **active**: Evento activo o inactivo.
   - **created_at**: Fecha de creación del evento.
   - **updated_at**: Fecha de última actualización del evento.
+  - **ticketTypes**: Listado de tipos de ticket del evento.
 
 - Category
 
@@ -134,12 +135,20 @@ La aplicación muestra eventos locales, permitiendo a los usuarios:
   - **ID**: Identificador único de la entrada.
   - **user_id**: Identificador del usuario que compró la entrada.
   - **event_id**: Identificador del evento para el cual es la entrada.
-  - **price**: Precio de la entrada.
-  - **ticket_type**: Tipo de entrada(GENERAL, VIP, OTRO).
+  - **ticketType_id**: Identificador para el tipo de ticket adquirido.
+  - **payment**: Identificador del pago correspondiente.
   - **status**: Estado de la entrada(RESERVADA, COMPRADA, CANCELADA).
   - **purchase_data**: Fecha de compra.
   - **created_at**: Fecha de creación.
   - **updated_at**: Fecha de última actualización.
+
+- TicketType
+
+  - **ID**: Identificador unico del tipo de ticket.
+  - **event_id**: Identificador del evento al que corresponde.
+  - **name**: Nombre unico para el tipo de ticket.
+  - **price**: Precio del ticket.
+  - **stock**: Stock para el evento relacionado.
 
 - Payments
 
@@ -155,33 +164,45 @@ La aplicación muestra eventos locales, permitiendo a los usuarios:
 
 ## Relaciones entre Entidades
 
-- Usuario(user)
-  - Un **Usuario** puede tener múltiples **Entradas** (1:N).
-  - Un **Usuario** puede organizar múltiples **Eventos** (1:N).
-  - Un **Usuario** tiene una **Ubicacion** (1:1).
-  - Un **Usuario** puede recibir múltiples **Notificaciones** (1:N).
-  - Un **Usuario** puede estar interesado en múltiples **Categorias** y una **Categoria** puede tener múltiples **Usuarios** (N:M).
+- User
 
-- Evento(event)
-  - Un **Evento** puede tener múltiples **Entradas** (1:N).
-  - Un **Evento** es organizado por un **Usuario** (M:1).
-  - Un **Evento** pertenece a una **Categoria** (M:1).
-  - Un **Evento** tiene una **Ubicacion** (M:1).
+  - Relación uno a muchos con **Ticket**.
+  - Relación uno a muchos con **Notification**.
+  - Relación muchos a muchos con **Category**.
+  - Relación muchos a uno con **Location**.
 
-- Entrada(ticket)
-  - Una **Entrada** pertenece a un **Usuario** (M:1).
-  - Una **Entrada** tiene un **Pago** (1:1).
-  - Una **Entrada** pertenece a un **Evento** (M:1).
+- Event
 
-- Pago(payment)
-  - Un **Pago** está asociado a una **Entrada** (1:1).
+  - Relación uno a muchos con **Notification**.
+  - Relación uno a muchos con **TicketType**.
+  - Relación muchos a uno con **Category**.
+  - Relación muchos a uno con **Location**.
 
-- Categoria(category)
-  - Una **Categoria** puede tener múltiples **Eventos** (1:M).
+- TicketType
 
-- Notificacion(notification)
-  - Una **Notificacion** pertenece a un **Usuario** (M:1).
+  - Relación uno a muchos con **Ticket**.
+  - Relación muchos a uno con **Event**.
 
-- Ubicacion
-  - Una **Ubicacion** está asociada a un **Usuario** (1:1).
-  - Una **Ubicacion** puede tener múltiples **Eventos** (1:M).
+- Ticket
+
+  - Relación muchos a uno con **TicketType**.
+  - Relación muchos a uno con **User**.
+  - Relación uno a uno con **Payment**.
+
+- Payment
+
+  - Relación uno a uno con **Ticket**.
+
+- Category
+
+  - Relación uno a muchos con **Event**.
+  - Relación muchos a muchos con **User**.
+
+- Notification
+
+  - Relación muchos a uno con **User**.
+  - Relación muchos a uno con **Event**.
+
+- Location
+  - Relación uno a muchos con **Event**.
+  - Relación uno a muchos con **User**.

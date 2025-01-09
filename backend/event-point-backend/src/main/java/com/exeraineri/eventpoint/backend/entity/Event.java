@@ -5,27 +5,37 @@
 package com.exeraineri.eventpoint.backend.entity;
 
 import com.exeraineri.eventpoint.backend.enumeration.EnumEventStatus;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  *
  * @author Exequiel
  */
+@EntityListeners(AuditingEntityListener.class)
 @Entity(name = "events")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -39,28 +49,41 @@ public class Event {
     @Column(nullable = false)
     private String title;
     private String description;
+    @Column(nullable = false)
     private int capacity;
     @Enumerated(EnumType.STRING)
-    private EnumEventStatus status;
-    @Temporal(TemporalType.TIMESTAMP)
+    private EnumEventStatus status = EnumEventStatus.ACTIVO;
+    @Column(nullable = false)
     private LocalDateTime startDate;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private LocalDateTime endDate;
-    private int maxTickets;
     private String imageUrl;
     private BigDecimal basePrice;
+    private Boolean isActive = Boolean.TRUE;
+
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Category category;
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Location location;
+
     @ManyToOne
+    @JoinColumn(nullable = false)
     private UserEntity organizer;
 
-    private Boolean isActive;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "event", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<TicketType> ticketTypes = new ArrayList<>();
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
     private LocalDateTime createdAt;
-    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    private void prePersist() {
+        ticketTypes.stream()
+                .forEach(type -> type.setEvent(this));
+    }
 
 }
