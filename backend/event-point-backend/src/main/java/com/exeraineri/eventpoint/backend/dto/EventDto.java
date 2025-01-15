@@ -5,9 +5,7 @@
 package com.exeraineri.eventpoint.backend.dto;
 
 import com.exeraineri.eventpoint.backend.enumeration.EnumEventStatus;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -25,7 +23,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EventDto {
 
     private Long id;
@@ -35,7 +32,6 @@ public class EventDto {
     private int capacity;
     private EnumEventStatus status;
     @NotNull(message = "Fecha inicio es requerido")
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime startDate;
     @NotNull(message = "Fecha fin es requerido")
     private LocalDateTime endDate;
@@ -43,11 +39,10 @@ public class EventDto {
     private BigDecimal basePrice;
     private CategoryDto category;
     private LocationDto location;
-    private UserDto organizer;
+    private Long organizerId;
     private Boolean isActive;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    @JsonIgnoreProperties(value = "event")
     private List<TicketTypeDto> ticketTypes;
 
 }

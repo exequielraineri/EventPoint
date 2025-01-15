@@ -5,6 +5,7 @@
 package com.exeraineri.eventpoint.backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,12 +20,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class NotificationDto {
 
     private Long id;
+    @NotNull(message = "Mensaje requerido")
     private String message;
-    private UserDto user;
-    private EventDto event;
+    private Long userId;
+    private Long eventId;
     private LocalDateTime createdAt;
 }

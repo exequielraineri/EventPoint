@@ -5,6 +5,8 @@
 package com.exeraineri.eventpoint.backend.entity;
 
 import com.exeraineri.eventpoint.backend.enumeration.EnumTicketStatus;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
@@ -16,7 +18,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -54,9 +55,10 @@ public class Ticket {
     @JoinColumn(nullable = false)
     private TicketType ticketType;
 
-    @OneToOne(mappedBy = "ticket")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Payment payment;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private EnumTicketStatus status;
 
@@ -68,12 +70,8 @@ public class Ticket {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    @PreUpdate
+    @PrePersist
     private void prePersist() {
-        if (purchaseDate != null) {
-            setStatus(EnumTicketStatus.COMPRADA);
-        } else {
-            setStatus(EnumTicketStatus.RESERVADA);
-        }
+        setStatus(EnumTicketStatus.RESERVADA);
     }
 }

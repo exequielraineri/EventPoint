@@ -3,7 +3,6 @@ package com.exeraineri.eventpoint.backend;
 import com.exeraineri.eventpoint.backend.entity.Category;
 import com.exeraineri.eventpoint.backend.entity.Event;
 import com.exeraineri.eventpoint.backend.entity.Location;
-import com.exeraineri.eventpoint.backend.entity.Ticket;
 import com.exeraineri.eventpoint.backend.entity.TicketType;
 import com.exeraineri.eventpoint.backend.entity.UserEntity;
 import com.exeraineri.eventpoint.backend.enumeration.EnumRole;
@@ -14,7 +13,6 @@ import com.exeraineri.eventpoint.backend.service.interfaces.ITicketService;
 import com.exeraineri.eventpoint.backend.service.interfaces.IUserService;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.Month;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +31,7 @@ public class EventPointBackendApplication {
         SpringApplication.run(EventPointBackendApplication.class, args);
     }
 
-    @Bean
+    /*@Bean
     CommandLineRunner initDatabase(IUserService userService,
             ICategoryService categoryService,
             IEventService eventService,
@@ -122,22 +120,15 @@ public class EventPointBackendApplication {
                             .startDate(LocalDateTime.of(2025, Month.JANUARY, 10, 15, 0))
                             .endDate(LocalDateTime.of(2025, Month.JANUARY, 13, 22, 0))
                             .basePrice(BigDecimal.valueOf(15000))
-                            .ticketTypes(List.of(ticketGeneral, ticketVip))
                             .build();
-                    event = eventService.save(event);
 
-                    Ticket ticket = Ticket.builder()
-                            .user(userUser)
-                            .event(event)
-                            .ticketType(event.getTicketTypes().get(0))
-                            .build();
-                    
-                    
-                    ticket = ticketService.save(ticket);
+                    event.addTicketType(ticketGeneral);
+                    event.addTicketType(ticketVip);
+                    event = eventService.save(event);
 
                 }
             }
         };
-    }
+    }*/
 
 }

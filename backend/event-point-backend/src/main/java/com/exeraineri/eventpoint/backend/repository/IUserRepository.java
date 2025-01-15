@@ -19,4 +19,5 @@ public interface IUserRepository extends JpaRepository<UserEntity, Long> {
     public boolean existsById(Long id);
 
     boolean existsByEmail(String email);
+
 }

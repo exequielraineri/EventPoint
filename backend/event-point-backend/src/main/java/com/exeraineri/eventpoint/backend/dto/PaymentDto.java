@@ -23,12 +23,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PaymentDto {
 
     private Long id;
-    @JsonIgnoreProperties(value = "payment")
-    private TicketDto ticket;
+    private Long ticketId;
     @NotNull(message = "Metodo de pago es requerido")
     private String method;
     private String transactionId;

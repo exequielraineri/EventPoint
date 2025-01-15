@@ -7,9 +7,9 @@ package com.exeraineri.eventpoint.backend.service.implementation;
 import com.exeraineri.eventpoint.backend.entity.Payment;
 import com.exeraineri.eventpoint.backend.entity.Ticket;
 import com.exeraineri.eventpoint.backend.enumeration.EnumPaymentStatus;
+import com.exeraineri.eventpoint.backend.enumeration.EnumTicketStatus;
 import com.exeraineri.eventpoint.backend.exception.CustomException.ResourceNotFoundException;
 import com.exeraineri.eventpoint.backend.repository.IPaymentRepository;
-import com.exeraineri.eventpoint.backend.service.interfaces.IEventService;
 import com.exeraineri.eventpoint.backend.service.interfaces.IPaymentService;
 import com.exeraineri.eventpoint.backend.service.interfaces.ITicketService;
 import java.time.LocalDateTime;
@@ -22,33 +22,34 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class PaymentServiceImpl implements IPaymentService {
-
+    
     private final IPaymentRepository paymentRepository;
-
+    
     private final ITicketService ticketService;
-
+    
     @Override
     public List<Payment> findAll() {
         return paymentRepository.findAll();
     }
-
+    
     @Override
     public Payment findById(Long id) {
         return paymentRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pago con ID " + id + " no encontrado"));
     }
-
+    
     @Override
     public Payment save(Payment payment) {
         Ticket ticket = ticketService.findById(payment.getTicket().getId());
         ticket.setPurchaseDate(LocalDateTime.now());
-        payment.setTicket(ticket);
         payment.setStatus(EnumPaymentStatus.APROBADO);
         payment.setAmount(ticket.getTicketType().getPrice());
-        
+        ticket.setPayment(payment);
+        ticket.setStatus(EnumTicketStatus.COMPRADA);
+        payment.setTicket(ticket);
         return paymentRepository.save(payment);
     }
-
+    
     @Override
     public Payment update(Long id, Payment payment) {
         Payment paymentBD = paymentRepository.findById(id)
@@ -58,7 +59,7 @@ public class PaymentServiceImpl implements IPaymentService {
         paymentBD.setUpdatedAt(LocalDateTime.now());
         return paymentRepository.save(payment);
     }
-
+    
     @Override
     public void deleteById(Long id) {
         if (!paymentRepository.existsById(id)) {
@@ -66,5 +67,5 @@ public class PaymentServiceImpl implements IPaymentService {
         }
         paymentRepository.deleteById(id);
     }
-
+    
 }

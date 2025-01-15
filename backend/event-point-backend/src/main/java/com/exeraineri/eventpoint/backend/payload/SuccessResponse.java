@@ -26,6 +26,4 @@ public class SuccessResponse<T> {
     private String message;
     private LocalDateTime timestamp;
 
-    
-
 }

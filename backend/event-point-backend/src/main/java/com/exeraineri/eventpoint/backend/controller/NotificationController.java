@@ -4,12 +4,9 @@
  */
 package com.exeraineri.eventpoint.backend.controller;
 
-import com.exeraineri.eventpoint.backend.dto.EventDto;
 import com.exeraineri.eventpoint.backend.dto.NotificationDto;
-import com.exeraineri.eventpoint.backend.entity.Event;
 import com.exeraineri.eventpoint.backend.entity.Notification;
 import com.exeraineri.eventpoint.backend.payload.SuccessResponse;
-import com.exeraineri.eventpoint.backend.service.interfaces.IEventService;
 import com.exeraineri.eventpoint.backend.service.interfaces.INotificationService;
 import jakarta.validation.Valid;
 import java.time.LocalDateTime;

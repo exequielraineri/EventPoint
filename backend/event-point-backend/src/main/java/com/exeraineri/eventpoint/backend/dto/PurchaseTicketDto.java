@@ -4,10 +4,8 @@
  */
 package com.exeraineri.eventpoint.backend.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,11 +19,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDto {
+public class PurchaseTicketDto {
 
-    private Long id;
-    @NotNull(message = "Nombre es requerido")
-    private String name;
-    private String description;
-    private Boolean isActive;
+    @NotNull(message = "EventId es requerido")
+    private Long eventId;
+    @NotNull(message = "UserId es requerido")
+    private Long userId;
+    @NotNull(message = "TicketTypeId es requerido")
+    private Long ticketTypeId;
+    @Min(value = 1)
+    private int quantity;
 }

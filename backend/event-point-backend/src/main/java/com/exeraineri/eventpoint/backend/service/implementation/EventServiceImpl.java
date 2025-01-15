@@ -6,12 +6,15 @@ package com.exeraineri.eventpoint.backend.service.implementation;
 
 import com.exeraineri.eventpoint.backend.entity.Category;
 import com.exeraineri.eventpoint.backend.entity.Event;
+import com.exeraineri.eventpoint.backend.entity.TicketType;
 import com.exeraineri.eventpoint.backend.entity.UserEntity;
+import com.exeraineri.eventpoint.backend.enumeration.EnumEventStatus;
 import com.exeraineri.eventpoint.backend.exception.CustomException.ResourceNotFoundException;
 import com.exeraineri.eventpoint.backend.repository.IEventRepository;
 import com.exeraineri.eventpoint.backend.service.interfaces.ICategoryService;
 import com.exeraineri.eventpoint.backend.service.interfaces.IEventService;
 import com.exeraineri.eventpoint.backend.service.interfaces.IUserService;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -43,6 +46,14 @@ public class EventServiceImpl implements IEventService {
         UserEntity user = userService.findById(event.getOrganizer().getId());
         Category category = categoryService.findById(event.getCategory().getId());
 
+        BigDecimal precioMinimo = event.getTicketTypes().stream()
+                .map(TicketType::getPrice)
+                .filter(price -> price != null)
+                .min(BigDecimal::compareTo)
+                .orElse(BigDecimal.ZERO);
+
+        event.setBasePrice(precioMinimo);
+        event.setStatus(EnumEventStatus.ACTIVO);
         event.setOrganizer(user);
         event.setCategory(category);
         event.setCreatedAt(LocalDateTime.now());
@@ -72,6 +83,16 @@ public class EventServiceImpl implements IEventService {
             throw new ResourceNotFoundException("Evento con ID " + id + " no encontrado");
         }
         eventRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Event> findByCategoryId(Long id) {
+        return eventRepository.findByCategoryId(id);
+    }
+
+    @Override
+    public List<Event> findByOrganizerId(Long id) {
+        return eventRepository.findByOrganizerId(id);
     }
 
 }

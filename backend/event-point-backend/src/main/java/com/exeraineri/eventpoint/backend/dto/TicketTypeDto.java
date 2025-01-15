@@ -24,7 +24,7 @@ public class TicketTypeDto {
 
     private Long id;
     @NotNull(message = "Evento es requerido")
-    private EventDto event;
+    private Long eventId;
     @NotNull(message = "Nombre es requerido")
     private String name;
     @NotNull(message = "Stock es requerido")

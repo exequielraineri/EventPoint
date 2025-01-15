@@ -6,7 +6,6 @@ package com.exeraineri.eventpoint.backend.controller;
 
 import com.exeraineri.eventpoint.backend.dto.LocationDto;
 import com.exeraineri.eventpoint.backend.entity.Location;
-import com.exeraineri.eventpoint.backend.exception.CustomException;
 import com.exeraineri.eventpoint.backend.payload.SuccessResponse;
 import com.exeraineri.eventpoint.backend.service.interfaces.ILocationService;
 import jakarta.validation.Valid;

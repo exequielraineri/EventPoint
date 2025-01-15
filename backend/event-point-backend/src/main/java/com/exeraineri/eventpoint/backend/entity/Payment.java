@@ -42,7 +42,7 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "payment", orphanRemoval = true)
     @JoinColumn(name = "ticket_id", referencedColumnName = "id")
     private Ticket ticket;
 

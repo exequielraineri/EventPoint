@@ -18,7 +18,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.PrePersist;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,6 +26,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -34,7 +34,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 /**
  *
  * @author Exequiel
+ *
  */
+@Slf4j
 @EntityListeners(AuditingEntityListener.class)
 @Entity(name = "events")
 @AllArgsConstructor
@@ -51,6 +53,7 @@ public class Event {
     private String description;
     @Column(nullable = false)
     private int capacity;
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private EnumEventStatus status = EnumEventStatus.ACTIVO;
     @Column(nullable = false)
@@ -59,6 +62,7 @@ public class Event {
     private LocalDateTime endDate;
     private String imageUrl;
     private BigDecimal basePrice;
+    @Builder.Default
     private Boolean isActive = Boolean.TRUE;
 
     @ManyToOne
@@ -72,7 +76,8 @@ public class Event {
     @JoinColumn(nullable = false)
     private UserEntity organizer;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "event", orphanRemoval = true, cascade = CascadeType.ALL)
+    @Builder.Default
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TicketType> ticketTypes = new ArrayList<>();
 
     @CreatedDate
@@ -80,10 +85,10 @@ public class Event {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    @PrePersist
-    private void prePersist() {
-        ticketTypes.stream()
-                .forEach(type -> type.setEvent(this));
+    public void addTicketType(TicketType ticketType) {
+        log.info("Ticket Type: {}", ticketType.toString());
+        this.ticketTypes.add(ticketType);
+        ticketType.setEvent(this);
     }
 
 }

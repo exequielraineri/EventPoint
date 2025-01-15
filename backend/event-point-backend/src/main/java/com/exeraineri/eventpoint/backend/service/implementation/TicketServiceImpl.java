@@ -5,6 +5,7 @@
 package com.exeraineri.eventpoint.backend.service.implementation;
 
 import com.exeraineri.eventpoint.backend.entity.Ticket;
+import com.exeraineri.eventpoint.backend.enumeration.EnumTicketStatus;
 import com.exeraineri.eventpoint.backend.exception.CustomException.ResourceNotFoundException;
 import com.exeraineri.eventpoint.backend.repository.ITicketRepository;
 import com.exeraineri.eventpoint.backend.service.interfaces.ITicketService;
@@ -36,6 +37,7 @@ public class TicketServiceImpl implements ITicketService {
             throw new ResourceNotFoundException("Ya no quedan entradas de tipo " + ticket.getTicketType().getName());
         }
         ticket.getTicketType().setStock(ticket.getTicketType().getStock() - 1);
+        ticket.setStatus(EnumTicketStatus.RESERVADA);
         return ticketRepository.save(ticket);
     }
 
@@ -55,6 +57,21 @@ public class TicketServiceImpl implements ITicketService {
             throw new ResourceNotFoundException("Ticket con ID " + id + " no encontrado");
         }
         ticketRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Ticket> findByEventId(Long id) {
+        return ticketRepository.findByEventId(id);
+    }
+
+    @Override
+    public List<Ticket> findByUserId(Long id) {
+        return ticketRepository.findByUserId(id);
+    }
+
+    @Override
+    public List<Ticket> saveAll(List<Ticket> tickets) {
+        return ticketRepository.saveAll(tickets);
     }
 
 }

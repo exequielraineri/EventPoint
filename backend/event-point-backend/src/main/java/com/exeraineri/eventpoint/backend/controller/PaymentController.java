@@ -4,9 +4,8 @@
  */
 package com.exeraineri.eventpoint.backend.controller;
 
-import com.exeraineri.eventpoint.backend.dto.NotificationDto;
 import com.exeraineri.eventpoint.backend.dto.PaymentDto;
-import com.exeraineri.eventpoint.backend.entity.Notification;
+import com.exeraineri.eventpoint.backend.dto.PaymentRequestDto;
 import com.exeraineri.eventpoint.backend.entity.Payment;
 import com.exeraineri.eventpoint.backend.payload.SuccessResponse;
 import com.exeraineri.eventpoint.backend.service.interfaces.IPaymentService;
@@ -37,7 +36,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaymentController {
 
     private final IPaymentService paymentService;
-
     private final ModelMapper modelMapper;
 
     @GetMapping
@@ -68,12 +66,11 @@ public class PaymentController {
     }
 
     @PostMapping
-    public ResponseEntity<?> savePayment(@Valid @RequestBody PaymentDto paymentDto) {
+    public ResponseEntity<?> savePayment(@Valid @RequestBody PaymentRequestDto paymentRequestDto) {
 
-        Payment payment = paymentService.save(modelMapper.map(paymentDto, Payment.class));
-
+        Payment payment = paymentService.save(modelMapper.map(paymentRequestDto, Payment.class));
         return new ResponseEntity<>(SuccessResponse.builder()
-                .data(modelMapper.map(payment, NotificationDto.class))
+                .data(modelMapper.map(payment, PaymentDto.class))
                 .message("Pago creado")
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.CREATED.value())
