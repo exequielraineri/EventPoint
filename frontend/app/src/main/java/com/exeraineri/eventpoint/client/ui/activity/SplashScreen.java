@@ -1,4 +1,4 @@
-package com.exeraineri.eventpoint.client;
+package com.exeraineri.eventpoint.client.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import kotlinx.coroutines.android.HandlerDispatcher;
+import com.exeraineri.eventpoint.client.R;
 
 public class SplashScreen extends AppCompatActivity {
 

@@ -6,8 +6,36 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
 
+    <!-- Colores principales -->
     <color name="black">#161616</color>
     <color name="purple">#8419E9</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#2f2f2f</color>
+
+    <!-- Variaciones del morado -->
+    <color name="purple_light">#A45EDF</color>
+    <color name="purple_dark">#5E0FA3</color>
+    <color name="purple_variant">#C8A4FF</color>
+
+    <!-- Variaciones del gris -->
+    <color name="grey_light">#4A4A4A</color>
+    <color name="grey_dark">#1A1A1A</color>
+    <color name="grey_variant">#5C5C5C</color>
+
+    <!-- Variaciones del negro -->
+    <color name="black_light">#2D2D2D</color>
+    <color name="black_variant">#404040</color>
+
+    <!-- Variaciones del blanco -->
+    <color name="white_soft">#F5F5F5</color>
+    <color name="white_variant">#E0E0E0</color>
+
+    <!-- Colores para estados interactivos -->
+    <color name="purple_pressed">#6A1B9A</color>
+    <color name="grey_disabled">#BDBDBD</color>
+
+    <!-- Colores para feedback -->
+    <color name="error_red">#FF5252</color>
+    <color name="warning_yellow">#FFC107</color>
+    <color name="success_green">#4CAF50</color>
 </resources>

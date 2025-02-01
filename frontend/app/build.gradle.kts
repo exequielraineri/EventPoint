@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.exeraineri.eventpoint.client"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.exeraineri.eventpoint.client"
@@ -30,12 +30,18 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     buildFeatures {
-        viewBinding = true
+        viewBinding {
+            enable = true
+        }
+        dataBinding {
+            enable = true
+        }
     }
 }
 
 dependencies {
-
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.0")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
