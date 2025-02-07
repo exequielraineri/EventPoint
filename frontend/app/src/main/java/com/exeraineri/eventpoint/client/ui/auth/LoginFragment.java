@@ -1,7 +1,7 @@
-package com.exeraineri.eventpoint.client.ui.fragment;
+package com.exeraineri.eventpoint.client.ui.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.system.Os;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,32 +12,17 @@ import androidx.fragment.app.Fragment;
 
 import com.exeraineri.eventpoint.client.R;
 import com.exeraineri.eventpoint.client.databinding.FragmentLoginBinding;
+import com.exeraineri.eventpoint.client.ui.MainActivity;
 
 
 public class LoginFragment extends Fragment {
 
     private FragmentLoginBinding binding;
 
-    public LoginFragment() {
-        // Required empty public constructor
-    }
-
-
-    public static LoginFragment newInstance() {
-        LoginFragment fragment = new LoginFragment();
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        binding=FragmentLoginBinding.inflate(inflater,container,false);
+        binding = FragmentLoginBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -45,14 +30,30 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        initUI();
+        initListener();
+        initObserver();
+
+    }
+
+    private void initListener() {
         binding.tvRegister.setOnClickListener(v -> {
             getParentFragmentManager().beginTransaction()
-                    .replace(R.id.frameLayoutAuthentication,new RegisterFragment())
+                    .replace(R.id.frameLayoutAuthentication, new RegisterFragment())
                     .commit();
         });
 
         binding.btnCloseAuth.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
             getActivity().finish();
         });
+    }
+
+
+    private void initUI() {
+    }
+
+    private void initObserver() {
     }
 }

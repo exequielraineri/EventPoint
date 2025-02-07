@@ -1,4 +1,4 @@
-package com.exeraineri.eventpoint.client.ui.activity;
+package com.exeraineri.eventpoint.client.ui;
 
 import android.content.Intent;
 import android.os.Bundle;

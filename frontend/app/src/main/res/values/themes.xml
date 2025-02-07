@@ -1,16 +1,22 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Theme.EventPointClient" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple</item>
-        <item name="colorPrimaryVariant">@color/purple_500</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/white</item>
-        <item name="colorSecondaryVariant">@color/white</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    <style name="Theme.EventPoint" parent="Theme.Material3.Dark">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryFont</item>
+        <item name="android:textColorSecondary">@color/colorSecondaryFont</item>
     </style>
+
+
+    <style name="Theme.Button.Primary" parent="Widget.Material3.Button">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Theme.Button.Secondary" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
 </resources>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="event"
+            type="com.exeraineri.eventpoint.client.domain.model.Event" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardViewEvent"
+        style="@style/Widget.Material3.CardView.Elevated"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="32dp"
+        android:layout_marginLeft="32dp"
+        android:clickable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+
+            <ImageView
+                android:id="@+id/ivEvent"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_hero" />
+
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:text="@{event.title}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Prueba de texto" />
+
+            <TextView
+                android:id="@+id/tvStartDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/baseline_date_range_24"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/white_soft"
+                android:gravity="center_vertical"
+                android:text="@{event.getLocalDateFormat()}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                android:textSize="12sp"
+                tools:text="Prueba de texto" />
+
+            <TextView
+                android:id="@+id/tvEventLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:drawableStart="@drawable/baseline_location_on_24"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/white_soft"
+                android:gravity="center_vertical"
+                android:text="@{event.location}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                android:textSize="12dp"
+                tools:text="Prueba de texto" />
+
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

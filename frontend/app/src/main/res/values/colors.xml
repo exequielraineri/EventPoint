@@ -6,11 +6,32 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
 
+
+    <color name="colorPrimary">@color/purple_200</color>
+    <color name="colorSecondary">@color/error_red</color>
+    <color name="colorPrimaryFont">@color/white</color>
+    <color name="colorSecondaryFont">@color/grey</color>
+
+    <!-- <color name="colorPrimary">#8419E9</color>
+    <color name="colorAccent">#00FFFF</color>
+    <color name="colorAccent2">#FF9500</color>
+    <color name="colorPrimaryVariant">#FF007F</color>
+<color name="colorPrimary">@color/purple</color>
+    <color name="colorPrimary">@color/purple</color>
+    <color name="colorPrimaryVariant">#000</color>
+    <color name="colorOnPrimary">#f0f0f0</color>
+    <color name="colorSecondary">#FBF4F4</color>
+    <color name="colorSecondaryVariant">#fff</color>
+    <color name="colorOnSecondary">#0e0e0e</color>
+    <color name="colorAccent">@color/warning_yellow</color>
+    <color name="colorOnAccent">#FFFFFF</color>-->
+
+
     <!-- Colores principales -->
-    <color name="black">#161616</color>
+    <color name="black">#000</color>
     <color name="purple">#8419E9</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="grey">#2f2f2f</color>
+    <color name="white">#eee</color>
+    <color name="grey">#a7a7a7</color>
 
     <!-- Variaciones del morado -->
     <color name="purple_light">#A45EDF</color>
