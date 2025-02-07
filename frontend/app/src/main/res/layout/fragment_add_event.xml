@@ -202,10 +202,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
         android:drawableEnd="@drawable/keyboard_arrow_right_24px"
-        android:drawableTint="@color/white_soft"
+        android:drawableTint="@color/white"
         android:text="Siguiente"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-        android:textColor="@color/white_soft"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -216,10 +216,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
         android:drawableLeft="@drawable/keyboard_arrow_left_24px"
-        android:drawableTint="@color/white_soft"
+        android:drawableTint="@color/white"
         android:text="Atras"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-        android:textColor="@color/white_soft"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

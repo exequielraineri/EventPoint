@@ -28,6 +28,7 @@ public class EventViewModel extends ViewModel {
     private final ICategoryService categoryService = new CategoryServiceImpl();
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
+
     public EventViewModel() {
         loadEvents();
         loadCategories();
@@ -42,6 +43,7 @@ public class EventViewModel extends ViewModel {
 
     private void loadEvents() {
         isLoading.postValue(true);
+
         executorService.execute(() -> {
             List<Event> eventsList = eventService.getAllEvents();
             events.postValue(eventsList);

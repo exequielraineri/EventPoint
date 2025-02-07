@@ -1,21 +1,23 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.EventPoint" parent="Theme.Material3.Dark">
-
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorAccent">@color/white</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="android:textColorPrimary">@color/colorPrimaryFont</item>
-        <item name="android:textColorSecondary">@color/colorSecondaryFont</item>
+        <!--<item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary">@color/colorSecondary</item>-->
     </style>
 
 
-    <style name="Theme.Button.Primary" parent="Widget.Material3.Button">
+    <style name="Theme.Button.Primary" parent="Widget.MaterialComponents.Button">
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="Theme.Button.Secondary" parent="Widget.Material3.Button.TextButton">
+    <style name="Theme.Button.Secondary" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textSize">16sp</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.EventPoint" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
 
